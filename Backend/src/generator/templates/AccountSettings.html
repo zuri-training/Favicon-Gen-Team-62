@@ -3,6 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]--></html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +17,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   /> -->
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
    
     <title>Account Setting</title>
 </head>
@@ -26,7 +27,7 @@
         <header class="navbar bg-light fw-semibold navbar-expand-md">
             <h1 class="visually-hidden">Favicon Account settings page</h1>
             <div class="container-fluid">
-              <a class="navbar-brand" href="#"><img src="./images/site-logo.png" alt=""> FaviconGen</a>
+              <a class="navbar-brand" href="#"><img src="{% static 'images/site-logo.png' %}" alt=""> FaviconGen</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -38,7 +39,7 @@
                 <div class="offcanvas-body">
                   <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 justify-content-md-end">
                     <li class="nav-item">
-                      <a class="nav-link active text-capitalize" aria-current="page" href="#">john doe <img src="./images/healthicons_ui-user-profile (1).png" alt=""></a>
+                      <a class="nav-link active text-capitalize" aria-current="page" href="#">john doe <img src="{% static 'images/healthicons_ui-user-profile (1).png' %}" alt=""></a>
                     </li>
 
                     <li class="form-check form-switch align-self-md-center" id="darkmode">
@@ -58,41 +59,43 @@
             <div class="container">
 
                 <!-- edit account settings form -->
-                <form action="" >
-
+                <form action="" method="POST">
+                    {% csrf_token %}
                     <header>
-                        <img src="./images/healthicons_ui-user-profile.png" alt="User Avatar">
+                        <img src="{% static 'images/healthicons_ui-user-profile.png' %}" alt="User Avatar">
                     </header>
-                    
-
+                   
                     <div class="row border-bottom py-4 ">
                         <div class="col-md-6 px-5">
                             <div class="mb-3">
                                 <p class="email">georgechinedu@gmail.com</p>
                             </div>
+                            
                             <div class="mb-3">
                                 <label for="username" class="form-label fs-4">Username</label>
-                                <input type="email" name="" id="useranme" class="form-control p-3" placeholder="existing name">
-                            </div>
+                                <input type="text" name="username" value="{{user.username}}" id="useranme" class="form-control p-3" disabled>
+                           
+                            </div> 
                         </div>
                         <div class="col-md-6 px-5">
                             <fieldset>
                                 <legend>Password</legend>
-                                <div class="mb-3">
+                                {% comment %} <div class="mb-3">
                                     <label for="currentpassword" class="form-label">Password</label>
                                     <input type="email" name="" id="currentpassword" class="form-control p-3" placeholder="">
-                                </div>
+                                </div> {% endcomment %}
                                 <div class="mb-3">
-                                    <label for="newpassword">New password</label>
-                                    <input type="email" name="" id="newpassword" class="form-control p-3" placeholder="">
+                                    {% comment %} <label for="newpassword">New password</label>
+                                    <input type="email" name="password" id="newpassword" class="form-control p-3" placeholder=""> {% endcomment %}
+                                    {{ form.as_p }}    
                                 </div>
-                                <div class="mb-3">
+                                {% comment %} <div class="mb-3">
                                     <label for="confirmpassword">Confirm new password</label>
-                                    <input type="email" name="" id="confirmpassword" class="form-control p-3" placeholder="">
-                                </div>
+                                    <input type="email" name="password2" id="confirmpassword" class="form-control p-3" placeholder="">
+                                </div> {% endcomment %}
                             </fieldset>
                             <div>
-                                <button class="btn btn-secondary px-4 text-black" role="button">Update profile</button>
+                                <button type="submit" class="btn btn-secondary px-4 text-black" role="button">Update profile</button>
                             </div>
                         </div>
                     </div>
@@ -105,20 +108,20 @@
             <section class="container my-5">
                 <h2 class="fs-4">Delete Account</h2>
                 <p>This will immediately delete all of your data including saved icons and more. This can’t be undone.</p>
-                <button class="btn btn-outline-danger px-4" role="button">Delete Account</button>
+                <a href="{% url 'delete' %}" class="btn btn-outline-danger px-4" role="button">Delete Account</a>
             </section>
 
 
         </main>
 
 
-        <div class="my-5" style="background-image: url('./images/footer-background.svg'); background-size: cover;">
+        <div class="my-5" style="background-image: url('{% static 'images/footer-background.svg' %}'); background-size: cover;">
             <footer class="container my-5 mx-auto" id="global-footer">
                 <div class="py-5 row gy-5 border-bottom border-dark position-relative">
                     <div class="col-12 col-md-4">
                         <!-- footer header -->
                         <header class="mb-4 mb-md-0">
-                        <h5 class="navbar-brand fs-4 fw-semibold" href="#" aria-label="Favicon logo"><img src="./images/site-logo.png" alt=""> FaviconGen</h5>
+                        <h5 class="navbar-brand fs-4 fw-semibold" href="#" aria-label="Favicon logo"><img src="{% static 'images/site-logo.png' %}" alt=""> FaviconGen</h5>
                         <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, quasi?</p>
                         </header>
     
@@ -131,23 +134,23 @@
     
                                         <!-- contact us --facebook -->
                                         <li class="nav-item"><a class="nav-link" href="/">
-                                                <img class="me-2" src="./images/facebook-logo-2019.svg" width="30" height="30" alt aria-hidden="true" />
+                                                <img class="me-2" src="{% static 'images/facebook-logo-2019.svg' %}" width="30" height="30" alt aria-hidden="true" />
                                                 <span class="visually-hidden">Favicon Facebook page</span></a>
                                         </li>
     
                                         <!-- contact us --github -->
                                         <li class="nav-item"><a class="nav-link me-2" href="/">
-                                                <img class="" src="./images/instagram.svg" width="30" height="30" alt aria-hidden="true" />
+                                                <img class="" src="{% static 'images/instagram.svg' %}" width="30" height="30" alt aria-hidden="true" />
                                                 <span class="visually-hidden">Favicon Instagram page</span></a>
                                         </li>
     
                                         <!-- contact us --twitter -->
                                         <li class="nav-item"><a class="nav-link me-2" href="/">
-                                                <img class="" src="./images/twitter.svg" width="30" height="30" alt aria-hidden="true" />
+                                                <img class="" src="{% static 'images/twitter.svg' %}" width="30" height="30" alt aria-hidden="true" />
                                                 <span class="visually-hidden">Favicon Twitter page</span></a>
                                         </li>
                                         <li class="nav-item"><a class="nav-link me-2" href="/">
-                                            <img class="" src="./images/linkedin.svg" width="30" height="30" alt aria-hidden="true" />
+                                            <img class="" src="{% static 'images/linkedin.svg' %}" width="30" height="30" alt aria-hidden="true" />
                                             <span class="visually-hidden">Favicon Linkedin page</span></a>
                                         </li>
                                     </ul>
@@ -158,7 +161,7 @@
                                 <!-- contact us --email -->
                                 <li class="nav-item mb-2">
                                     <a class="nav-link" href="mailto:">
-                                        <img class="me-3" src="./images/mail.svg" width="30" height="30" alt aria-hidden="true" /><span class="text-black">lorem@loremmail.com</span>
+                                        <img class="me-3" src="{% static 'images/mail.svg' %}" width="30" height="30" alt aria-hidden="true" /><span class="text-black">lorem@loremmail.com</span>
                                         <span class="visually-hidden">FaviconGen email account</span>
                                     </a>
                                 </li>
@@ -166,7 +169,7 @@
                                 <!-- contact us --telephone -->
                                 <li class="nav-item mb-2">
                                     <a class="nav-link" href="tel:+">
-                                        <img class="me-3" src="./images/phone.svg" width="30" height="30" alt aria-hidden="true" /><span class="text-black">+12345345</span>
+                                        <img class="me-3" src="{% static 'images/phone.svg' %}" width="30" height="30" alt aria-hidden="true" /><span class="text-black">+12345345</span>
                                         <span class="visually-hidden">FaviconGen telephone</span>
                                     </a>
                                 </li>
@@ -447,7 +450,7 @@
         </div>
         
         </div> -->
-<script src="./main.js"></script>
+<script src="{% static 'main.js' %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

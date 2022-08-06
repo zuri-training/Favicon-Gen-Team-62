@@ -1,3 +1,4 @@
+{% load static %}
 //Dark & Light Mode
 document.getElementById("darkmode").onclick = function() {darkMode()};
 

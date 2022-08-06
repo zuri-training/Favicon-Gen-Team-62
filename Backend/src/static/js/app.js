@@ -1,3 +1,4 @@
+{% load static %}
 // VARIABLES
 const rangeInput = document.querySelector('input[type = "range"]');
 const imageList = document.querySelector(".image-list");
