@@ -19,6 +19,16 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def contact(request):
+    return render(request, 'contact.html')
+
+def privacyPolicy(request):
+    return render(request, 'privacyPolicy.html')
+
+
+def termsOfUse(request):
+    return render(request, 'termsOfUse.html')
+
 def SignUp(request):
     if request.method == 'POST':
         username = request.POST['username']

@@ -17,6 +17,8 @@ function darkMode() {
 
 
 
+
+
 //counter
 
 var counterBox = document.querySelector(".counter-box")

@@ -3,11 +3,16 @@
 
 <html>
     <head>
-        {% load static %}
+{% load livereload_tags %}
+
+
+
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
        <title>Favicon generator</title>
+                <link rel="icon" type="image/x-icon" href="../static/images/favicon.png">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
         <link rel="stylesheet" type='text/css' href="{% static 'css/mainstyle.css' %}">
@@ -35,7 +40,7 @@
     <body>
        <main>
     <!-- navbar -->
-<nav class="navbar navbar-expand-lg  sticky-top">
+<nav class="navbar navbar-expand-lg home-nav-bg sticky-top">
   <div class="container-fluid center  ">
          <button class="navbar-toggler end-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas">
                     <span class="navbar-toggler-icon"></span>
@@ -64,14 +69,14 @@
           <a class="nav-link " aria-current="page" href="#">Generate</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./about.html">About Us</a>
+          <a class="nav-link" href="./about">About Us</a>
         </li>
         
              <li class="nav-item">
-          <a class="nav-link" href="#">FAQ</a>
+          <a class="nav-link" href="./faq">FAQ</a>
         </li>
              <li class="nav-item">
-          <a class="nav-link" href="./contact.html">Contact</a>
+          <a class="nav-link" href="./contact">Contact</a>
         </li>
         
        
@@ -80,10 +85,10 @@
            <ul class="navbar-nav  desktop-log">
     
 
-         <label class="switch">
+         <!-- <label class="switch">
   <input type="checkbox">
-  <span class="slider round" id="darkmode"></span>
-</label>
+  <span class="slider round" id="darkbtn"></span>
+</label> -->
           
           <li class="nav-item login log-mobile">
           <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -387,7 +392,7 @@ Generate, Save & Share your <br> Favicon for <span class="free">FREE!</span>
 </div>
  <!-- seventh section -->
  
- <div class="footer-bg">
+  <div class="footer-bg">
    <footer class="">   
       <div class=" rowX footer container">
         <div class="favicongen col25" id="favicongen">
@@ -414,8 +419,8 @@ Generate, Save & Share your <br> Favicon for <span class="free">FREE!</span>
         <div class="developer col25">
             <h4 style="text-decoration: underline;">Developer</h4>
             <nav class="navi1">
-            <a href="#">Lorem ipsum </a>
-            <a href="#">Lorem ipsum </a>
+            <a href="{% url 'termsOfUse' %}">Terms Of Use </a>
+            <a href="{% url 'privacyPolicy' %}">Privacy Policy </a>
             <a href="#">Lorem ipsum </a>
             <a href="#">Lorem ipsum </a>
             </nav>
